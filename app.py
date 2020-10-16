@@ -46,3 +46,9 @@ imdb_df = pd.DataFrame({"movie_title": movie_title,
 
 app = Flask(__name__)
 
+
+@app.route("/", methods=("POST", "GET"))
+def welcome():
+
+if __name__ == "__main__":
+    app.run(debug=True)
