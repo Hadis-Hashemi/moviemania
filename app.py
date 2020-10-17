@@ -10,39 +10,23 @@ with open(filepath_imdb) as jsonfile:
     imdbjson = json.load(jsonfile)
 
 # Convert to dataframe
-imdb_data = imdbjson['imdb_data']
-imdb_df = pd.DataFrame(imdb_data)
-
-imdb_title_id = imdb_df[0]
-title = imdb_df[1]
-year = imdb_df[3]
-genre = imdb_df[5]
-duration = imdb_df[6]
-country = imdb_df[7]
-description = imdb_df[13]
-avg_vote = imdb_df[14]
-
-imdb_df = pd.DataFrame({"title": title,
-                        "year": year,
-                        "genre": genre,
-                        "duration": duration,
-                        "country": country,
-                        "description": description,
-                        "avg_vote": avg_vote})
+# imdb_data = imdbjson['imdb_data']
+imdb_df = pd.DataFrame(imdbjson)
 
 
-filepath_meta = os.path.join("Resources/imdb_movies")
+imdb_df = imdb_df[['title', 'year', 'genre', 'duration', 'country', 'description', 'avg_vote']]
+
+
+filepath_meta = os.path.join("Resources/metacritic_movies.json")
 with open(filepath_meta) as jsonfile:
     metajson = json.load(jsonfile)
 
-meta_data = metajson['meta_data']
-meta_df = pd.DataFrame(meta_data)
+# meta_data = metajson['meta_data']
+meta_df = pd.DataFrame(metajson)
+print(meta_df.head())
 
-movie_title = meta_df[0]
-metascore = meta_df[6]
 
-imdb_df = pd.DataFrame({"movie_title": movie_title,
-                        "metascore": metascore})
+meta_df = meta_df[['movie_title', 'metascore']]
 
 app = Flask(__name__)
 
@@ -50,5 +34,19 @@ app = Flask(__name__)
 @app.route("/", methods=("POST", "GET"))
 def welcome():
 
+    return render_template("index.html")
+
+@app.route("/api/v1.0/imdb_data")
+def imdb_data():
+    """Return the CoD data as json"""
+
+    return jsonify(imdbjson)
+
+@app.route("/api/v1.0/meta_data")
+def causaMortis():
+    """Return the CoD data as json"""
+
+    return jsonify(metajson)
+    
 if __name__ == "__main__":
     app.run(debug=True)
