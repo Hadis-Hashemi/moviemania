@@ -1,58 +1,58 @@
 
 
 import pandas as pd
-data_Action = pd.read_csv("Action.csv")
+data_Action = pd.read_csv("Resources/Genres/Action.csv")
 data_Action = data_Action[data_Action['description'].notna()]
 
-data_Adventure = pd.read_csv("Adventure.csv")
+data_Adventure = pd.read_csv("Resources/Genres/Adventure.csv")
 data_Adventure = data_Adventure[data_Adventure['description'].notna()]
 
-data_Biography = pd.read_csv("Biography.csv")
+data_Biography = pd.read_csv("Resources/Genres/Biography.csv")
 data_Biography = data_Biography[data_Biography['description'].notna()]
 
-data_Comedy = pd.read_csv("Comedy.csv")
+data_Comedy = pd.read_csv("Resources/Genres/Comedy.csv")
 data_Comedy = data_Comedy[data_Comedy['description'].notna()]
 
-data_Crime= pd.read_csv("Crime.csv")
+data_Crime= pd.read_csv("Resources/Genres/Crime.csv")
 data_Crime = data_Crime[data_Crime['description'].notna()]
 
-data_Drama = pd.read_csv("Drama.csv")
+data_Drama = pd.read_csv("Resources/Genres/Drama.csv")
 data_Drama = data_Drama[data_Drama['description'].notna()]
 
-data_Family = pd.read_csv("Family.csv")
+data_Family = pd.read_csv("Resources/Genres/Family.csv")
 data_Family = data_Family[data_Family['description'].notna()]
 
-data_Fantasy = pd.read_csv("Fantasy.csv")
+data_Fantasy = pd.read_csv("Resources/Genres/Fantasy.csv")
 data_Fantasy = data_Fantasy[data_Fantasy['description'].notna()]
 
-data_Film_Noir = pd.read_csv("Film-Noir.csv")
+data_Film_Noir = pd.read_csv("Resources/Genres/Film-Noir.csv")
 data_Film_Noir = data_Film_Noir[data_Film_Noir['description'].notna()]
 
-data_Horror = pd.read_csv("Horror.csv")
+data_Horror = pd.read_csv("Resources/Genres/Horror.csv")
 data_Horror = data_Horror[data_Horror['description'].notna()]
 
-data_Musical = pd.read_csv("Musical.csv")
+data_Musical = pd.read_csv("Resources/Genres/Musical.csv")
 data_Musical = data_Musical[data_Musical['description'].notna()]
 
-data_Mystery = pd.read_csv("Mystery.csv")
+data_Mystery = pd.read_csv("Resources/Genres/Mystery.csv")
 data_Mystery = data_Mystery[data_Mystery['description'].notna()]
 
-data_Romance = pd.read_csv("Romance.csv")
+data_Romance = pd.read_csv("Resources/Genres/Romance.csv")
 data_Romance = data_Romance[data_Romance['description'].notna()]
 
-data_Sci_Fi = pd.read_csv("Sci-Fi.csv")
+data_Sci_Fi = pd.read_csv("Resources/Genres/Sci-Fi.csv")
 data_Sci_Fi = data_Sci_Fi[data_Sci_Fi['description'].notna()]
 
-data_Sport = pd.read_csv("Sport.csv")
+data_Sport = pd.read_csv("Resources/Genres/Sport.csv")
 data_Sport = data_Sport[data_Sport['description'].notna()]
 
-data_Thriller = pd.read_csv("Thriller.csv")
+data_Thriller = pd.read_csv("Resources/Genres/Thriller.csv")
 data_Thriller = data_Thriller[data_Thriller['description'].notna()]
 
-data_War= pd.read_csv("War.csv")
+data_War= pd.read_csv("Resources/Genres/War.csv")
 data_War = data_War[data_War['description'].notna()]
 
-data_Western= pd.read_csv("Western.csv")
+data_Western= pd.read_csv("Resources/Genres/Western.csv")
 data_Western = data_Western[data_Western['description'].notna()]
 
 from sklearn.feature_extraction.text import CountVectorizer
@@ -333,7 +333,8 @@ def flickerpicker(user_input):
 
 
     query = "SELECT title FROM Movie_imdb2 WHERE"
-
+    if not movie_type:
+        return "no movies"
     for genre in movie_type:
         query = query+" genre like '%%"+genre+"%%' AND " 
 
