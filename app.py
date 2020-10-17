@@ -34,7 +34,7 @@ app = Flask(__name__)
 @app.route("/", methods=("POST", "GET"))
 def welcome():
 
-    return render_template("index.html")
+    return render_template('index.html')
 
 @app.route("/api/v1.0/imdb_data")
 def imdb_data():
