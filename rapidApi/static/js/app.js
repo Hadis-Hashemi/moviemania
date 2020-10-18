@@ -1,4 +1,4 @@
-// Get the searched movie / tvshow
+//search for tiles, find streaming sources
 $(document).ready(() => {
   $('#searchForm').on('submit', (e) => {
     let searchText = $('#searchText').val();
@@ -10,16 +10,11 @@ $(document).ready(() => {
 
 function showSearch(searchText){
   console.log(searchText);
-
-
-  // starts api call
   function streamResults(){
       $.ajax({
         "asynch": true,
         "crossDomain": true,
         "url": "https://rapidapi.p.rapidapi.com/lookup?term="+searchText+"&country=us",
-          //url with the search function info
-          // url: 'https://utelly-tv-shows-and-movies-availability-v1.p.mashape.com/lookup?country=us&term=justice',
         "method": 'GET',
         "headers": {
           "x-rapidapi-host": "utelly-tv-shows-and-movies-availability-v1.p.rapidapi.com",
@@ -33,14 +28,14 @@ function showSearch(searchText){
               for (var x = 0; x < data.results.length; x++) {
                   console.log(x);
                   console.log(data.results[x]);
-                  var movieName = data.results[x].name;
-                  var moviePosterUrl = data.results[x].picture;
+                  var showName = data.results[x].name;
+                  var showImage = data.results[x].picture;
 
                   output += `
                   <div class="card">
-                    <img class="card-img-top" src="${data.results[x].picture}" alt="Card image">
+                    <img class="card-img-top" src="${showImage}" alt="Card image">
                     <div class="card-body">
-                      <h4 class="card-title">${data.results[x].name}</h4>
+                      <h4 class="card-title">${showName}</h4>
                   `;
                   for (var i = 0; i < data.results[x].locations.length; i++) {
                     var location = data.results[x].locations[i].display_name

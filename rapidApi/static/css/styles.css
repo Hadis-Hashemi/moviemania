@@ -13,8 +13,10 @@ body, html {
   .card-container {
     display: grid;
     padding: 1rem;
-    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+    grid-template-columns: repeat(auto-fit, 200px);
     grid-gap: 1rem;
+    align-content: center;
+    justify-content: center;
 }
 
   .card {
