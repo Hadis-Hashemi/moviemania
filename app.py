@@ -40,7 +40,7 @@ def welcome():
 def imdb_data():
     """Return the CoD data as json"""
 
-    return jsonify(imdbjson)
+    return (imdb_df.to_json(orient='records'))
 
 @app.route("/api/v1.0/meta_data")
 def causaMortis():
