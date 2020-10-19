@@ -1,4 +1,5 @@
 //search for tiles, find streaming sources
+//heavily referenced "https://rapidapi.com/blog/how-to-use-an-api-with-javascript/"
 $(document).ready(() => {
   $('#searchForm').on('submit', (e) => {
     let searchText = $('#searchText').val();
@@ -30,12 +31,14 @@ function showSearch(searchText){
                   console.log(data.results[x]);
                   var showName = data.results[x].name;
                   var showImage = data.results[x].picture;
+                  var showDataUrl = data.results[x].external_ids.imdb.url;
 
                   output += `
                   <div class="card">
                     <img class="card-img-top" src="${showImage}" alt="Card image">
                     <div class="card-body">
-                      <h4 class="card-title">${showName}</h4>
+                      <h4><a href="${showDataUrl}" class="card-title">${showName}</a></h4>
+
                   `;
                   for (var i = 0; i < data.results[x].locations.length; i++) {
                     var location = data.results[x].locations[i].display_name
@@ -104,24 +107,14 @@ function showSearch(searchText){
                       <a href="${locationUrl}" class="btn btn-primary"><img src="${locationIcon}" alt="Watch on Hulu" style="max-height:30px;"></a>
                       `;
                     }
-
                   }
-
-                  //ENDS the output, so all the </div> n such.
-                  //example the </h1>
                   output += `
                   </div>
                 </div>
                   `;
-
               }
 
               $('#movies').html(output);
-
-
-
-
-
           }
       });
   }
@@ -129,8 +122,6 @@ function showSearch(searchText){
       $('#btn').click(function(e) {
         e.preventDefault();
          streamResults();
-
-
   });
     streamResults();
 
