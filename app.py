@@ -47,6 +47,12 @@ def causaMortis():
     """Return the CoD data as json"""
 
     return jsonify(metajson)
+
+@app.route("/api")
+def rapidApi():
+    """Return the CoD data as json"""
+
+    return render_template('api.html')
     
 if __name__ == "__main__":
     app.run(debug=True)
