@@ -1,8 +1,9 @@
 import pandas as pd
 import json as json
 from pandas.io.json import json_normalize
-from flask import Flask, jsonify, render_template
+from flask import Flask, jsonify, render_template, request
 import os
+import flickerpicker
 
 # Join file from resources
 filepath_imdb = os.path.join("Resources/imdb_movies.json")
@@ -42,11 +43,18 @@ def imdb_data():
 
     return (imdb_df.to_json(orient='records'))
 
-@app.route("/api/v1.0/meta_data")
-def causaMortis():
-    """Return the CoD data as json"""
+@app.route("/api/v1.0/flickerpicker", methods= ["POST", "GET"])
+def flicker():
+#     user_input = inputValue
+    user_input = request.json.get("inputValue")
+    picker = flickerpicker.flickerpicker(user_input)
+    return jsonify(picker)
 
-    return jsonify(metajson)
+# @app.route("/api/v1.0/meta_data")
+# def causaMortis():
+#     """Return the CoD data as json"""
+
+#     return jsonify(metajson)
     
 if __name__ == "__main__":
     app.run(debug=True)

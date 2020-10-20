@@ -1,6 +1,7 @@
 console.log(d3)
 var tbody = d3.select("tbody")
-d3.json("/api/v1.0/imdb_data", function(error, response){
+d3.json("/api/v1.0/imdb_data",{method:"GET"})
+.then(function(response){
     console.log(response)
     var imdbData = response.slice(0,10);
 
@@ -25,6 +26,16 @@ button.on("click", function() {
     // Get the value property of the input date, state, shape
     var inputValue = inputElement.property("value");
     console.log(inputValue);
+    d3.json("/api/v1.0/flickerpicker", {
+        method:"POST",
+        body:JSON.stringify({inputValue}),
+        headers:{
+            "Content-Type": "application/json"
+        }
+    }).then(function(response){
+        console.log(response);
+        var flickerData = response.slice(0,10)
+    }).catch(function(error){console.log(error)});
 
 
 //     filteredData.forEach(function(selections) {
