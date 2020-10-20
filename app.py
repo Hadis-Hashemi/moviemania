@@ -48,23 +48,28 @@ def flicker():
 #     user_input = inputValue
     user_input = request.json.get("inputValue")
     picker = flickerpicker.flickerpicker(user_input)
-    return jsonify(picker)
+    response = {}
+    num = 0
+    for pick in picker:
+        print(pick[0])
+        response[f'{num}']=str(pick[0])
+        num+=1
+    return(jsonify(response))
+
+
+
 
 # @app.route("/api/v1.0/meta_data")
 # def causaMortis():
 #     """Return the CoD data as json"""
 
-<<<<<<< HEAD
-#     return jsonify(metajson)
-=======
-    return jsonify(metajson)
+    # return jsonify(metajson)
 
 @app.route("/api")
 def rapidApi():
     """Return the CoD data as json"""
 
     return render_template('api.html')
->>>>>>> af99443c35c67504652ac414eac0e95fa4e7cf02
     
 if __name__ == "__main__":
     app.run(debug=True)

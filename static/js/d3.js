@@ -2,7 +2,7 @@ console.log(d3)
 var tbody = d3.select("tbody")
 d3.json("/api/v1.0/imdb_data",{method:"GET"})
 .then(function(response){
-    console.log(response)
+    // console.log(response)
     var imdbData = response.slice(0,10);
 
     imdbData.forEach(function(imdb) {
@@ -34,7 +34,12 @@ button.on("click", function() {
         }
     }).then(function(response){
         console.log(response);
-        var flickerData = response.slice(0,10)
+        message = "You may like these movies ";
+        if (response[0]!= null){
+            message = message+ response[0]
+        }
+        alert (message)
+        var flickerData = response
     }).catch(function(error){console.log(error)});
 
 
