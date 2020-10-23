@@ -51,8 +51,8 @@ def flicker():
     response = {}
     num = 0
     for pick in picker:
-        print(pick[0])
-        response[f'{num}']=str(pick[0])
+        print(pick[0:7])
+        response[f'{num}']=str(pick[0:7])
         num+=1
     return(jsonify(response))
 
@@ -64,6 +64,13 @@ def flicker():
 #     """Return the CoD data as json"""
 
     # return jsonify(metajson)
+
+# @app.route("/history")
+# def history():
+#     """go the the history pages"""
+
+#     return render_template("history.html")
+
 
 @app.route("/api")
 def rapidApi():

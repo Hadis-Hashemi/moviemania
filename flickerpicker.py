@@ -332,14 +332,14 @@ def flickerpicker(user_input):
 
 
 
-    query = "SELECT title FROM Movie_imdb2 WHERE"
+    query = "SELECT title, year, genre, duration, country, description,avg_vote FROM Movie_imdb2 WHERE"
     if not movie_type:
         return "no movies"
     for genre in movie_type:
         query = query+" genre like '%%"+genre+"%%' AND " 
 
 
-    query = query[:-4]+ "ORDER BY avg_vote DESC LIMIT 5"
+        query = query[:-4]+ "ORDER BY avg_vote DESC LIMIT 5"
 
 
     ## connection engine 
