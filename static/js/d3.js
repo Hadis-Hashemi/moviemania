@@ -34,6 +34,11 @@ button.on("click", function () {
         }
     }).then(function (response) {
         console.log(response);
+        Object.entries(response).forEach(function ([key, value]) {
+            console.log(key, value);
+            // Append each value to the corresponding cell
+            var cell = row.append("td");
+            cell.text(value);
         message = "You may like these movies ";
         if (response[0] != null) {
             message = message + response[0]
